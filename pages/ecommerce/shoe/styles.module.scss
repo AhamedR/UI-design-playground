@@ -1,7 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&family=Poppins:wght@100;300&display=swap');
+
+@keyframes image-animate {
+  0% {
+    transform: rotate(-20deg);
+  }
+  30% {
+    transform: rotate(-22deg);
+  }
+  100% {
+    transform: rotate(0deg) scale(1.2);
+  }
+}
+
+@keyframes left-card-animate {
+  100% {
+    transform: translateX(0) ;
+  }
+}
+
+@keyframes right-card-animate {
+  0%{
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateX(0) ;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+
 .container {
   height: 100vh;
   color: #4D4D4D;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
 
   .main {
     background: #E85961; 
@@ -14,7 +50,12 @@
     align-items: center;
     justify-content: center;
 
+    position: relative;
+
     .productLeft {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       z-index: 2;
       height: 80%;
       width: 40%;
@@ -25,8 +66,56 @@
       box-shadow: 0px 0px 40px 5px rgba(32,26,30,.5);
 
       border-radius: 30px;
+      transform: translateX(50%) ;
+      animation: left-card-animate .6s forwards ease;
+
+      &Header {
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem;
+
+        & > img {
+          width: 20%;
+          max-width: 60px;
+        }
+
+        & > button {
+          background: transparent;
+          border: none;
+        }
+      }
+
+      &Image {
+        display: block;
+        & > img {
+          width: 100%;
+          transform: rotate(-20deg);
+          animation: image-animate .6s 2s forwards ease;
+        }
+      }
+
+      &Dots {
+        width: 100%;
+        padding: 3rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+
+        & > span {
+          border-radius: 10px;
+          min-width: 10px;
+          min-height: 10px;
+          background: #989294;
+
+          &[data-active=true] {
+            background: #D1274A;
+            background: linear-gradient(45deg, #D1274A 0%, #ED576C 100%);
+          }
+        }
+      }
     }
-    
+
     .productRight{
       z-index: 1;
       height: 70%;
@@ -38,6 +127,109 @@
 
       border-radius: 0 30px 30px 0;
       padding: 50px;
+
+      opacity: 0;
+      transform: translateX(-10%);
+      animation: right-card-animate .3s .5s forwards ease;
+
+      &Title {
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        margin: 0;
+      }
+
+      &SubTitle {
+        display: flex;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: normal;
+
+        & > p {
+          color: #B9B9B9;
+          margin: 0;
+          margin-right: 8px;
+
+          &:last-child {
+            color: #989898;
+          }
+        }
+      }
+
+      &Price {
+        font-family: 'Oswald', sans-serif;
+        font-size: 3rem;
+        margin: 1rem 0;
+      }
+
+      &Description {
+        font-weight: normal;
+        color: #B9B9B9;
+        font-size: 1.12rem;
+      }
+
+      &Configurations {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        align-items: center;
+        gap: 16px;
+
+        text-transform: uppercase;
+        color: #989898;
+        margin-top: 2rem;
+
+        &Color {
+          display: flex;
+          align-items: center;
+          gap: 38px;
+
+          & > label {
+            position: relative;
+            cursor: pointer;
+
+            & > input {
+              margin: 0;
+              opacity: 0;
+            }
+
+            & > span {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 27px;
+              height: 27px;
+
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+              border-radius: 50%;
+
+              background: #FFFFFF;
+              transition: all .3s cubic-bezier(0.785, 0.135, 0.15, 0.86) ;
+
+              &::after {
+                content: '';
+                width: 20px;
+                height: 20px;
+                background: var(--fill-color);
+
+                border-radius: 50%;
+                box-sizing: border-box;
+                border: 1px solid #FFFFFF;
+                box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
+              }
+            }
+
+            input:checked {
+              & ~ span {
+                background: #E85961;
+                background: linear-gradient(to left, #E85961, #FA7F5C); 
+                box-shadow: 0px 0px 10px 1px #ed576bad;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

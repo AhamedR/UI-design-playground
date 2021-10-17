@@ -46,20 +46,27 @@ export default function Home () {
             <span />
           </div>
           <h2 className={styles.productRightTitle}>Nike Air Zoom Structure 22</h2>
-          <h4 className={styles.productRightSubTitle}>Style Number <p>AH5402-797</p></h4>
+          <h4 className={styles.productRightSubTitle}><p>Style Number</p> <p>AH5402-797</p></h4>
           <h1 className={styles.productRightPrice}>$79.00</h1>
           <p className={styles.productRightDescription}>Feels secure.Still a trusted favourite for your everyday runs.The Nike Air Zoom Structure 22 keeps it light with added ventilation for a cool feel to match the heat coming off your tread.Every step feels plush, with plenty of support through the midfoot and the heel working together for a smooth, stable journey.</p>
-          <div className={styles.productRightColors}>
+          <div className={styles.productRightConfigurations}>
             <label>Color</label>
-            <div>
-              <input type='radio' />
-              <input type='radio' />
-              <input type='radio' />
+            <div className={styles.productRightConfigurationsColor}>
+              <label>
+                <input type='radio' name='color' />
+                <span style={{ '--fill-color': '#474772' }} />
+              </label>
+              <label>
+                <input type='radio' name='color' />
+                <span style={{ '--fill-color': '#E55267' }} />
+              </label>
+              <label>
+                <input type='radio' name='color' />
+                <span style={{ '--fill-color': '#34313D' }} />
+              </label>
             </div>
-          </div>
-          <div className={styles.productRightSizes}>
-            <label>Color</label>
-            <div>
+            <label>Size</label>
+            <div className={styles.productRightConfigurationsSize}>
               <button>10</button>
               <button>11</button>
               <button>11.5</button>
@@ -67,10 +74,8 @@ export default function Home () {
               <button>12.5</button>
               <button>13</button>
             </div>
-          </div>
-          <div className={styles.productRightQuantity}>
             <label>Quantity</label>
-            <div>
+            <div className={styles.productRightConfigurationsQty}>
               <button>+</button>
               <p>2</p>
               <button>-</button>
